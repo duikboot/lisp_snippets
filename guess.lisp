@@ -1,6 +1,6 @@
 (defparameter *number* 0)
-(defparameter *small* 1)
-(defparameter *big* 100)
+(defparameter *small* 0)
+(defparameter *big* 102)
 
 (defun guess-my-number ()
   (ash (+ *small* *big*) -1))
@@ -23,22 +23,20 @@
   (guess-my-number)
   (main))
 
-(defun q(a)
-  (print "yes")
-  (print a)
-  (quit)
-  )
-
 (defun main ()
   ; (if argv
   ;   (setf *number* argv)
-  (setf *number* (random 100))
+  (format t "Please enter a number: ")
+  (setf *number* (read))
   ; )
   (print *number*)
-  (loop 
-    (if (= *number* (guess-my-number))
-      (q *number*)
-      (if (< *number* (guess-my-number))
-        (smaller)
-        (bigger)
-        ))))
+  (loop
+    (cond ((= *number* (guess-my-number))
+      (print "I guesses it")
+      (quit))
+      ((> *number* (guess-my-number))
+        (bigger))
+      ((< *number* (guess-my-number))
+        (smaller))
+        )))
+(main)
