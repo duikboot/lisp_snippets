@@ -121,3 +121,24 @@
     (t (cons (o+
                (car tup1) (car tup2))
              (tup+ (cdr tup1) (cdr tup2))))))
+
+(defun n> (n m)
+  "n greater than m"
+  (cond
+    ((zerop n) nil)
+    ((zerop m) t)
+    (t (n> (1- n)(1- m)))))
+
+(defun n< (n m)
+  "n smaller than m"
+  (cond
+    ((zerop m) nil)
+    ((zerop n) t)
+    (t (n< (1- n)(1- m)))))
+
+(defun == (n m)
+  "n equal to m"
+  (cond
+    ((n< n m) nil)
+    ((n> n m) nil)
+    (t t)))
