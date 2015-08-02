@@ -111,4 +111,13 @@
 
 (defun x (n m)
   (cond ((zerop m) 0)
-        (t (+ n (x n (1- m))))))
+        (t (o+  n (x n (1- m))))))
+
+(defun tup+ (tup1 tup2)
+  (cond
+    ((and (null tup1) (null tup2)) (quote ()))
+    ((null tup1) tup2)
+    ((null tup2) tup1)
+    (t (cons (o+
+               (car tup1) (car tup2))
+             (tup+ (cdr tup1) (cdr tup2))))))
