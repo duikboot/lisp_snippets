@@ -66,12 +66,14 @@
     (t (cons (car lat) (multiinserL new old (cdr lat))))))
 
 (defun substr (new old lat)
+  "Replace first old with new"
   (cond
     ((null lat) (quote ()))
     ((equalp old (car lat)) (cons new (cdr lat)))
     (t (cons (car lat) (substr new old (cdr lat))))))
 
 (defun multisubstr (new old lat)
+  "Replace all old with new"
   (cond
     ((null lat) (quote ()))
     ((equalp old (car lat)) (cons new (multisubstr new old (cdr lat))))
@@ -101,3 +103,12 @@
   (cond
     ((zerop m) n)
     (t (1- (o- n (1- m))))))
+
+(defun addtup (tup)
+  (cond
+     ((null tup) 0)
+     (t (o+ (car tup) (addtup (cdr tup))))))
+
+(defun x (n m)
+  (cond ((zerop m) 0)
+        (t (+ n (* (x n (1- m)))))))
