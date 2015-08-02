@@ -111,4 +111,4 @@
 
 (defun x (n m)
   (cond ((zerop m) 0)
-        (t (+ n (* (x n (1- m)))))))
+        (t (+ n (x n (1- m))))))
