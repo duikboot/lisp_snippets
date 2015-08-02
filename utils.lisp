@@ -1,33 +1,35 @@
 (defun atom? (x)
+  "Is it a atom?"
   (not (listp x)))
 
 (defun lat? (l)
+  "Is it a list of atoms?"
   (cond ((null l) t)
         ((atom? (car l)) (lat? (cdr l)))
         (t nil)))
 
-(defun member? (a l)
-  (cond ((null l) nil)
-        ((or (equalp a (car l)) (member? a (cdr l))))))
+(defun member? (a lat)
+  "Is 'a' a member of lat?"
+  (cond ((null lat) nil)
+        ((or (equalp a (car lat)) (member? a (cdr lat))))))
 
-        ; ((equalp a (car l)) t)
-        ; ((member? a (cdr l)))))
+        ; ((equalp a (car lat)) t)
+        ; ((member? a (cdr lat)))))
 
+(defun rember (a lat)
+  (cond ((null lat) (quote ()))
+        ((equalp a (car lat)) (cdr lat))
+        (t (cons (car lat) (rember a (cdr lat))))))
 
-(defun rember (a l)
-  (cond ((null l) (quote ()))
-        ((equalp a (car l)) (cdr l))
-        (t (cons (car l) (rember a (cdr l))))))
+(defun multirember (a lat)
+  (cond ((null lat) (quote ()))
+        ((equalp a (car lat)) (multirember a (cdr lat)))
+        (t (cons (car lat) (rember a (cdr lat))))))
 
-(defun multirember (a l)
-  (cond ((null l) (quote ()))
-        ((equalp a (car l)) (multirember a (cdr l)))
-        (t (cons (car l) (rember a (cdr l))))))
-
-(defun firsts (l)
-  (cond ((null l) (quote ()))
+(defun firsts (lat)
+  (cond ((null lat) (quote ()))
         (t (cons
-             (car (car l)) (firsts (cdr l))))))
+             (car (car lat)) (firsts (cdr lat))))))
 
 (defun insertR (new old lat)
   (cond
@@ -62,6 +64,12 @@
     ((equalp old (car lat)) (cons new (cdr lat)))
     (t (cons (car lat) (substr new old (cdr lat))))))
 
+(defun multisubstr (new old lat)
+  (cond
+    ((null lat) (quote ()))
+    ((equalp old (car lat)) (cons new (multisubstr new old (cdr lat))))
+    (t (cons (car lat) (multisubstr new old (cdr lat))))))
+
 (defun substr2 (new old1 old2 lat)
   "Replace either old1 or old2 with new"
   (cond
@@ -76,3 +84,13 @@
 (defun xx (&rest numbers)
   (cond ((null numbers) 1)
     (t (*(car numbers) (apply #'xx (cdr numbers))))))
+
+(defun o+ (n m)
+  (cond
+    ((zerop m) n)
+    (t (1+ (o+ n (1- m))))))
+
+(defun o- (n m)
+  (cond
+    ((zerop m) n)
+    (t (1- (o- n (1- m))))))
