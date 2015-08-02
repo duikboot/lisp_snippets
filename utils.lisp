@@ -17,21 +17,25 @@
         ; ((member? a (cdr lat)))))
 
 (defun rember (a lat)
+  "Replace first member of lat with a"
   (cond ((null lat) (quote ()))
         ((equalp a (car lat)) (cdr lat))
         (t (cons (car lat) (rember a (cdr lat))))))
 
 (defun multirember (a lat)
+  "Replace all members of lat with a"
   (cond ((null lat) (quote ()))
         ((equalp a (car lat)) (multirember a (cdr lat)))
         (t (cons (car lat) (rember a (cdr lat))))))
 
 (defun firsts (lat)
+  "Make a lists of first elements of list of lists"
   (cond ((null lat) (quote ()))
         (t (cons
              (car (car lat)) (firsts (cdr lat))))))
 
 (defun insertR (new old lat)
+  "Insert new right of first occurrence old in lat"
   (cond
     ((null lat) (quote ()))
     ((equalp old (car lat)) (cons old (cons new (cdr lat))))
@@ -39,6 +43,7 @@
 
 
 (defun multiinsertR (new old lat)
+  "Insert new right of all occurrences old in lat"
   (cond
     ((null lat) (quote ()))
     ((equalp old (car lat)) (cons old
@@ -46,12 +51,14 @@
     (t (cons (car lat) (multiinsertR new old (cdr lat))))))
 
 (defun insertL (new old lat)
+  "Insert new lift of first occurrence old in lat"
   (cond
     ((null lat) (quote ()))
     ((equalp old (car lat)) (cons new lat))
     (t (cons (car lat) (insertL new old (cdr lat))))))
 
 (defun multiinserL (new old lat)
+  "Insert new lift of all occurrences old in lat"
   (cond
     ((null lat) (quote ()))
     ((equalp old (car lat)) (cons new
