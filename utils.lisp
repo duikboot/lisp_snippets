@@ -147,3 +147,18 @@
   (cond
     ((zerop m) 1)
     (t (x n (power n (1- m))))))
+
+(defun devide (n m)
+  (cond
+    ((n< n m) 0)
+    (t (1+ (devide (- n m) m)))))
+
+(defun my-length (lat)
+  (cond
+    ((null lat) 0)
+    (t (1+ (my-length (cdr lat))))))
+
+(defun pick (n lat)
+  (cond
+    ((zerop (1- n)) (car lat))
+    (t (pick (1- n) (cdr lat)))))
