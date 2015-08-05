@@ -142,3 +142,8 @@
     ((n< n m) nil)
     ((n> n m) nil)
     (t t)))
+
+(defun power (n m)
+  (cond
+    ((zerop m) 1)
+    (t (x n (power n (1- m))))))
