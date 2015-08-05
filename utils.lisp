@@ -162,3 +162,38 @@
   (cond
     ((zerop (1- n)) (car lat))
     (t (pick (1- n) (cdr lat)))))
+
+(defun rempick (n lat)
+  (cond
+    ((one? n) (cdr lat))
+    (t (cons (car lat) (rempick (1- n) (cdr lat))))))
+
+(defun all-nums (lat)
+  (cond
+    ((null lat) (quote ()))
+    ((not (numberp (car lat)))(all-nums (cdr lat)))
+    (t (cons (car lat) (all-nums (cdr lat))))))
+
+(defun all-nums2 (lat)
+  (cond
+    ((null lat) (quote ()))
+    ((numberp (car lat))(cons
+                (car lat)
+                (all-nums2 (cdr lat))))
+    (t (all-nums2 (cdr lat)))))
+
+(defun eqan? (a1 a2)
+  (cond 
+    ((and (numberp a1)(numberp a2))
+     (= a1 a2))
+    ((or (numberp a1) (numberp a2))
+     nil)
+    (t (equalp a1 a2))))
+
+(defun occur (a lat)
+  (cond
+    ((null lat) 0)
+    ((eqan? a (car lat)) (1+ (occur a (cdr lat))))
+    (t (occur a (cdr lat)))))
+
+(defun one? (a) (= 1 a))
