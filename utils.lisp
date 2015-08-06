@@ -183,7 +183,7 @@
     (t (all-nums2 (cdr lat)))))
 
 (defun eqan? (a1 a2)
-  (cond 
+  (cond
     ((and (numberp a1)(numberp a2))
      (= a1 a2))
     ((or (numberp a1) (numberp a2))
