@@ -199,7 +199,7 @@
 (defun one? (a) (= 1 a))
 
 (defun rember* (a lat)
-  (cond 
+  (cond
     ((null lat) (quote ()))
     ((atom? (car lat))
      (cond
