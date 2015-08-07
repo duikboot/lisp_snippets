@@ -202,8 +202,17 @@
   (cond 
     ((null lat) (quote ()))
     ((atom? (car lat))
-            (cond
-              ((equalp a (car lat)) (rember* a (cdr lat)))
-              (t (cons (car lat) (rember* a (cdr lat))))))
-    (t (cons (rember* a (car lat)) (rember* a (cdr lat)) ))))
+     (cond
+       ((equalp a (car lat)) (rember* a (cdr lat)))
+       (t (cons (car lat) (rember* a (cdr lat))))))
+    (t (cons (rember* a (car lat)) (rember* a (cdr lat))))))
 
+(defun insertR* (new old l)
+  (cond
+    ((null l) (quote ()))
+    ((atom? (car l))
+     (cond
+       ((equalp old (car l))
+        (cons old (cons new (insertR* new old (cdr l)))))
+       (t (cons (car l) (insertR* new old (cdr l))))))
+    (t (cons (insertR* new old (car l)) (insertR* new old (cdr l))))))
