@@ -197,3 +197,13 @@
     (t (occur a (cdr lat)))))
 
 (defun one? (a) (= 1 a))
+
+(defun rember* (a lat)
+  (cond 
+    ((null lat) (quote ()))
+    ((atom? (car lat))
+            (cond
+              ((equalp a (car lat)) (rember* a (cdr lat)))
+              (t (cons (car lat) (rember* a (cdr lat))))))
+    (t (cons (rember* a (car lat)) (rember* a (cdr lat)) ))))
+
