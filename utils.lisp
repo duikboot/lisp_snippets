@@ -163,6 +163,8 @@
     ((zerop (1- n)) (car lat))
     (t (pick (1- n) (cdr lat)))))
 
+(defun one? (a) (= 1 a))
+
 (defun rempick (n lat)
   (cond
     ((one? n) (cdr lat))
@@ -195,8 +197,6 @@
     ((null lat) 0)
     ((eqan? a (car lat)) (1+ (occur a (cdr lat))))
     (t (occur a (cdr lat)))))
-
-(defun one? (a) (= 1 a))
 
 (defun rember* (a lat)
   (cond

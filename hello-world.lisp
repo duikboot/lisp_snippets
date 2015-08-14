@@ -11,7 +11,6 @@
 (in-package #:hello-world)
 
 
-
 (define-route hello-world ("")
     "Hello World")
 
