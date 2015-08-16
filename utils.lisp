@@ -220,3 +220,21 @@
       (cons
         (insertR* new old (car l))
         (insertR* new old (cdr l))))))
+
+(defun fair-coin ()
+  (let ((toss (random 101)))
+    (cond ((< toss 50) 'heads)
+          ((> toss 50) 'tails)
+          (t 'edge))))
+
+(defun count-coins (n)
+  (cond
+    ((equal n 0) nil)
+    (t (cons (fair-coin) (count-coins (1- n))))))
+
+; (defun avarage-coins (n)
+;   (let (
+;         (l n)
+;         (coins (count-coins(n))))
+;     (cond
+;       ((equalp 'head (car coins))))))
