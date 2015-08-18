@@ -195,7 +195,7 @@
 (defun occur (a lat)
   (cond
     ((null lat) 0)
-    ((eqan? a (car lat)) (1+ (occur a (cdr lat))))
+    ((equal a (car lat)) (1+ (occur a (cdr lat))))
     (t (occur a (cdr lat)))))
 
 (defun rember* (a lat)
@@ -227,14 +227,12 @@
           ((> toss 50) 'tails)
           (t 'edge))))
 
-(defun count-coins (n)
+(defun list-coins (n)
   (cond
-    ((equal n 0) nil)
-    (t (cons (fair-coin) (count-coins (1- n))))))
+    ((= n 0) (quote ()))
+    (t (cons (fair-coin) (list-coins (1- n))))))
 
-; (defun avarage-coins (n)
-;   (let (
-;         (l n)
-;         (coins (count-coins(n))))
-;     (cond
-;       ((equalp 'head (car coins))))))
+(defun average-coins (n)
+  (/
+    (occur 'heads (list-coins n))
+    n))
