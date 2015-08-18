@@ -40,6 +40,4 @@
   (print "Please enter a number: ")
   (setf *number* (read))
   ; (print *number*)
-  (guesser)
-  (quit))
-(main)
+  (guesser))

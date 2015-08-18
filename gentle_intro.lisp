@@ -1,7 +1,5 @@
 (defun myfun (a b)
-  (list (list a) b
-        )
-  )
+  (list (list a) b))
 
 (defun my-abs (x)
   (if (< x 0)
@@ -28,8 +26,8 @@
 (defun small-positive-oddp (x)
   (and (< x 100)
        (> x 0)
-       (oddp x))
-  )
+       (oddp x)))
+
 (defun how-alike (a b)
   (cond
     ((equal a b) 'the-same)
@@ -52,6 +50,4 @@
   (cond
     ((and (equal x 'scissors)(equal y 'rock)) 'second-wins)
     ((and (equal x 'scissors)(equal y 'paper)) 'firs-wins)
-    ((and (equal y 'paper)(equal x 'scissors)) 'second-wins)
-    )
-  )
+    ((and (equal y 'paper)(equal x 'scissors)) 'second-wins)))
