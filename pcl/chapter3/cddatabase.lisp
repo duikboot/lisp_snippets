@@ -1,3 +1,4 @@
+(defmacro backwards (exp) (reverse exp))
 
 (defvar *db* nil)
 
@@ -17,7 +18,7 @@
   (read-line *query-io*))
 
 (defun prompt-for-cd ()
-  (make-cd 
+  (make-cd
     (prompt-read "Title")
     (prompt-read "Artist")
     (or (parse-integer (prompt-read "Rating") :junk-allowed t) 0)
@@ -30,8 +31,7 @@
 (defun save-db (filename)
   (with-open-file (out filename
                   :direction :output
-                  :if-exists :supersede
-                  )
+                  :if-exists :supersede)
     (with-standard-io-syntax
       (print *db* out))))
 
@@ -61,8 +61,12 @@
         (mapcar
           #'(lambda (row)
               (when (funcall selector-fn row)
-                (if title (setf (getf row :title) title))
-                (if artist (setf (getf row :artist) artist))
-                (if rating (setf (getf row :rating) rating))
+                (if title    (setf (getf row :title) title))
+                (if artist   (setf (getf row :artist) artist))
+                (if rating   (setf (getf row :rating) rating))
                 (if ripped-p (setf (getf row :ripped) ripped)))
               row) *db*)))
+
+(defun delete-rows (selector-fn)
+  (setf *db* (remove-if selector-fn *db*)))
+
