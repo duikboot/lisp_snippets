@@ -7,6 +7,7 @@
   (list :title title :artist artist :rating rating :ripped ripped))
 
 (defun add-record (cd)
+  "Push cd onto *db* stack"
   (push cd *db*))
 
 (defun dump-db ()
