@@ -13,3 +13,6 @@ tags
 *.lib
 *.orig
 .hsenv*
+pcl/code
+*fasl
+*.db
