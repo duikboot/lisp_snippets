@@ -1,4 +1,5 @@
-(defmacro backwards (exp) (reverse exp))
+(defmacro backwards (exp)
+  (reverse exp))
 
 (defvar *db* nil)
 
