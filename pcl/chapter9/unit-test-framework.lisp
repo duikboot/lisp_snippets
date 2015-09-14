@@ -2,6 +2,10 @@
   (format t "~:[FAIL~;pass~] ... ~a~%" result form)
   result)
 
+(defmacro with-gensyms ((&rest names) &body body)
+  `(let ,(loop for n in names collect `(,n (gensym)))
+     ,@body))
+
 (defmacro check (&body form)
   `(progn
      ,@(loop for f in form collect `(report-result ,f ',f))))
