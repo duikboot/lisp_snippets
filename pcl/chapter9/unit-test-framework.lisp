@@ -7,8 +7,14 @@
      ,@body))
 
 (defmacro check (&body form)
-  `(progn
+  `(combine-results
      ,@(loop for f in form collect `(report-result ,f ',f))))
+
+(defmacro combine-results (&body forms)
+  (with-gensyms (result)
+    `(let ((,result t))
+       ,@(loop for f in forms collect `(unless ,f (setf ,result nil)))
+       ,result)))
 
 (defun test-+ ()
   (check
@@ -25,3 +31,8 @@
     (= (* 2 -2) -4)
     (= (* 3 -2) -1)
     (= (* 1 2) 3)))
+
+(defun test-arithmetic ()
+  (combine-results
+    (test-+)
+    (test-*)))
