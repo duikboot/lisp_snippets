@@ -10,10 +10,18 @@
   `(progn
      ,@(loop for f in form collect `(report-result ,f ',f))))
 
-(defun tests ()
+(defun test-+ ()
   (check
     (= (+ 1 2 3) 6)
     (= (+ 1 -2) -1)
     (= (+ 2 -2) -1)
     (= (+ 3 -2) -1)
     (= (+ 1 2) 3)))
+
+(defun test-* ()
+  (check
+    (= (* 1 2 3) 6)
+    (= (* 1 -2) -2)
+    (= (* 2 -2) -4)
+    (= (* 3 -2) -1)
+    (= (* 1 2) 3)))
