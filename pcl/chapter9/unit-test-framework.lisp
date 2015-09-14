@@ -1,5 +1,7 @@
+(defvar *test-name* nil)
+
 (defun report-result (result form)
-  (format t "~:[FAIL~;pass~] ... ~a~%" result form)
+  (format t "~:[FAIL~;pass~] ... ~a: ~a~%" result *test-name* form)
   result)
 
 (defmacro with-gensyms ((&rest names) &body body)
@@ -17,20 +19,22 @@
        ,result)))
 
 (defun test-+ ()
+  (let ((*test-name* 'test-+))
   (check
     (= (+ 1 2 3) 6)
     (= (+ 1 -2) -1)
     (= (+ 2 -2) -1)
     (= (+ 3 -2) -1)
-    (= (+ 1 2) 3)))
+    (= (+ 1 2) 3)) ))
 
 (defun test-* ()
+  (let ((*test-name* 'test-*))
   (check
     (= (* 1 2 3) 6)
     (= (* 1 -2) -2)
     (= (* 2 -2) -4)
     (= (* 3 -2) -1)
-    (= (* 1 2) 3)))
+    (= (* 1 2) 3))))
 
 (defun test-arithmetic ()
   (combine-results
