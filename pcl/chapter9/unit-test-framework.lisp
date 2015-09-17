@@ -18,23 +18,24 @@
        ,@(loop for f in forms collect `(unless ,f (setf ,result nil)))
        ,result)))
 
-(defun test-+ ()
-  (let ((*test-name* 'test-+))
-  (check
-    (= (+ 1 2 3) 6)
-    (= (+ 1 -2) -1)
-    (= (+ 2 -2) -1)
-    (= (+ 3 -2) -1)
-    (= (+ 1 2) 3)) ))
+(defmacro deftest (name parameters &body body)
+  `(defun ,name ,parameters
+     (let ((*test-name* ',name))
+       ,@body)))
 
-(defun test-* ()
-  (let ((*test-name* 'test-*))
+(deftest test-+ ()
   (check
-    (= (* 1 2 3) 6)
-    (= (* 1 -2) -2)
-    (= (* 2 -2) -4)
-    (= (* 3 -2) -1)
-    (= (* 1 2) 3))))
+   (= (+ 1 2 3) 6)
+   (= (+ 1 -2) -1)
+   (= (+ 2 -2) -1)
+   (= (+ 3 -2) -1)))
+
+(deftest test-* ()
+  (check
+   (= (* 1 2 3) 6)
+   (= (* 1 -2) -1)
+   (= (* 2 -2) -1)
+   (= (* 3 -2) -1)))
 
 (defun test-arithmetic ()
   (combine-results
