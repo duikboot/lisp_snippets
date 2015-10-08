@@ -6,6 +6,9 @@
 ;;; The following module contains parts of the source code for
 ;;; my book Lisp for the Web. You can get a copy of the book here:
 ;;; https://leanpub.com/lispweb
+(load "~/.sbclrc")
+
+(ql:quickload '(cl-who hunchentoot parenscript))
 
 (defpackage :retro-games
   (:use :cl :cl-who :hunchentoot :parenscript))
