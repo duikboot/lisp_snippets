@@ -1,3 +1,4 @@
+(load "~/.sbclrc")
 (ql:quickload :hunchentoot)
 (use-package :hunchentoot)
 

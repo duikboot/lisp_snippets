@@ -31,6 +31,7 @@
         (if (not (y-or-n-p "Add another? "))(return))))
 
 (defun save-db (filename)
+  "Save current *db* to file."
   (with-open-file (out filename
                   :direction :output
                   :if-exists :supersede)

@@ -1,6 +1,7 @@
 ;;;; hello-world.lisp
 
 
+(load "~/.sbclrc")
 (ql:quickload "restas")
 
 
