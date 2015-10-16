@@ -1,9 +1,8 @@
-
-(defparameter *nodes* '((living-room (you are in a living-room. 
+(defparameter *nodes* '((living-room (you are in a living-room.
                                           a wizard is snoring on the couch))
-                        (garden (you are in a beautiful garden. 
+                        (garden (you are in a beautiful garden.
                                      there is a well in front of you))
-                        (attic (you are in the attic. 
+                        (attic (you are in the attic.
                                     there is a giant welding torch in the corner))))
 
 (defun describe-location (location nodes)
@@ -17,3 +16,18 @@
 
 (defun describe-path (edge)
   `(there is a ,(caddr edge) going ,(cadr edge) from here.))
+
+(defun describe-paths (location edges)
+  (apply #'append (mapcar #'describe-path (cdr (assoc location edges)))))
+
+(defparameter *objects* '(whiskey bucket chain frog))
+
+(defparameter *object-locations* '((whiskey living-room)
+                                   (bucket living-room)
+                                   (chain garden)
+                                   (frog garden)))
+
+(defun objects-at (loc objs obj-locs)
+  (labels ((at-loc-p (obj)
+             (eq (cadr (assoc obj obj-locs)) loc)))
+    (remove-if-not #'at-loc-p objs)))
