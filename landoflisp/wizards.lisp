@@ -18,6 +18,8 @@
                                    (chain garden)
                                    (frog garden)))
 
+(defparameter *location* 'living-room)
+
 (defun describe-location (location nodes)
   (cadr (assoc location nodes)))
 
@@ -26,7 +28,6 @@
 
 (defun describe-paths (location edges)
   (apply #'append (mapcar #'describe-path (cdr (assoc location edges)))))
-
 
 (defun objects-at (loc objs obj-locs)
   (labels ((at-loc-p (obj)
@@ -37,3 +38,17 @@
   (labels ((describe-obj (obj)
              `(you see a ,obj on the floor.)))
     (apply #'append (mapcar #'describe-obj (objects-at loc objs obj-loc)))))
+
+(defun look ()
+     (append (describe-location *location* *nodes*)
+             (describe-paths *location* *edges*)
+             (describe-objects *location* *objects* *object-locations*)))
+
+(defun walk (direction)
+  (let ((next (find direction
+                    (cdr (assoc *location* *edges*))
+                    :key #'cadr)))
+    (if next
+      (progn (setf *location* (car next))
+             (look))
+      '(you cannot go that way.))))
