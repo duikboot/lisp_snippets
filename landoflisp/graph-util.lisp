@@ -1,3 +1,9 @@
+(defparameter *wizard-nodes* '((living-room (you are in a living-room.
+                                          a wizard is snoring on the couch))
+                        (garden (you are in a beautiful garden.
+                                     there is a well in front of you))
+                        (attic (you are in the attic.
+                                    there is a giant welding torch in the corner))))
 
 
 (defun dot-name (exp)
@@ -14,3 +20,13 @@
         (concatenate 'string (subseq s 0 (- *max-label-length* 3)) "...")
         s))
     ""))
+
+
+(defun nodes->dot (nodes)
+  (mapc (lambda (node)
+          (fresh-line)
+          (princ (dot-name (car node)))
+          (princ "[label=\"")
+          (princ (dot-label node))
+          (princ "\"];"))
+        nodes))
