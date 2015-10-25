@@ -1,4 +1,4 @@
-(defparameter *wizard-nodes* '((living-room (you are in a living-room.
+(defparameter *nodes* '((living-room (you are in a living-room.
                                           a wizard is snoring on the couch))
                         (garden (you are in a beautiful garden.
                                      there is a well in front of you))
@@ -30,3 +30,17 @@
           (princ (dot-label node))
           (princ "\"];"))
         nodes))
+
+
+(defun edges->dot (edges)
+  (mapc (lambda (node)
+          (mapc (lambda (edge)
+                  (fresh-line)
+                  (princ (dot-name (car node)))
+                  (princ "->")
+                  (princ (dot-name (car edge)))
+                  (princ "[label=\"")
+                  (princ (dot-label (cdr edge)))
+                  (princ "\"];"))
+                (cdr node)))
+        edges))
