@@ -85,7 +85,6 @@
     (eval sexp)
     `(I do not know that command.)))
 
-
 (defun tweak-text (lst caps lit)
   (when lst
     (let ((item (car lst))
