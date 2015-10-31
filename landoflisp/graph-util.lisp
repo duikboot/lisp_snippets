@@ -1,4 +1,4 @@
-(defparameter *nodes* '((living-room (you are in a living-room.
+(defparameter *wizard-nodes* '((living-room (you are in a living-room.
                                           a wizard is snoring on the couch))
                         (garden (you are in a beautiful garden.
                                      there is a well in front of you))
