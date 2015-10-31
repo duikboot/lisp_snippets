@@ -5,6 +5,10 @@
                         (attic (you are in the attic.
                                     there is a giant welding torch in the corner))))
 
+(defparameter *wizard-edges* '((living-room (garden west door)
+                                     (attic upstairs ladder))
+                        (garden (living-room east door))
+                        (attic (living-room downstairs ladder))))
 
 (defun dot-name (exp)
   (substitute-if #\_ (complement #'alphanumericp) (prin1-to-string exp)))
@@ -44,3 +48,24 @@
                   (princ "\"];"))
                 (cdr node)))
         edges))
+
+(defun graph->dot (nodes edges)
+  (princ "digraph{")
+  (nodes->dot nodes)
+  (edges->dot edges)
+  (princ "}"))
+
+
+(defun dot->png (fname thunk)
+  (with-open-file (*standard-output*
+                    fname
+                    :direction :output
+                    :if-exists :supersede)
+    (funcall thunk))
+  (sb-ext:run-program "/usr/bin/dot" (list "-Tpng" "-O" fname)))
+
+
+(defun graph->png (fname nodes edges)
+  (dot->png fname
+            (lambda ()
+              (graph->dot nodes edges))))
