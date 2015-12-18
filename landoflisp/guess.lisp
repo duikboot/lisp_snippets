@@ -3,6 +3,7 @@
 (defparameter *big* 102)
 (defparameter *mynumber* 0)
 (defparameter *guesses* 0)
+(defparameter *again* nil)
 
 (defun guess-my-number ()
   (ash (+ *small* *big*) -1))
@@ -26,7 +27,8 @@
          (guesser))
         ((< *number* *mynumber*)
          (smaller)
-         (guesser))))
+         (guesser))
+        (t nil)))
 
 (defun main ()
   (print "Please enter a number: ")
