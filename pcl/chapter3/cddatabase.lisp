@@ -12,7 +12,7 @@
 
 (defun dump-db ()
   (dolist (cd *db*)
-           (format t "~{~a~10t~a~%~}~%" cd)))
+          (format t "~{~a~10t~a~%~}~%" cd)))
 
 (defun prompt-read (prompt)
   (format *query-io* "~a: " prompt)
@@ -33,8 +33,8 @@
 (defun save-db (filename)
   "Save current *db* to file."
   (with-open-file (out filename
-                  :direction :output
-                  :if-exists :supersede)
+                   :direction :output
+                   :if-exists :supersede)
     (with-standard-io-syntax
       (print *db* out))))
 
