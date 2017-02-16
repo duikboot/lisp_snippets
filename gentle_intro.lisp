@@ -1,5 +1,5 @@
 (defun myfun (a b)
-  (list (list a) b))
+ (list (list a) b))
 
 (defun my-abs (x)
   (if (< x 0)
@@ -12,8 +12,8 @@
 
 (defun my-compare (x y)
   (cond ((equal x y) 'numbers-are-the-same)
-  ((> x y) 'first-is-bigger)
-  ((< x y) 'second-is-bigger)))
+   ((> x y) 'first-is-bigger)
+   ((< x y) 'second-is-bigger)))
 
 
 (defun is-in (place)
@@ -33,18 +33,17 @@
     ((equal a b) 'the-same)
     ((and (oddp a) (oddp b)) 'both-odd)
     ((and (not (oddp a))
-            (not (oddp b)))
-            'both-even)
+          (not (oddp b)))
+     'both-even)
     ((and (< a 0)
-            (< b 0))
-            'both-negative)
+          (< b 0))
+     'both-negative)
     (t 'not-alike)))
 
 (defun same-sign (x y)
   (or (and (zerop x)(zerop y)
            (and (> x 0)(> y 0))
-           (and (< x 0)(< y 0))
-           )))
+           (and (< x 0)(< y 0)))))
 
 (defun play (x y)
   (cond

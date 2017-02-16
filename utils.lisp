@@ -1,6 +1,6 @@
 (defun atom? (x)
-  "Is it a atom?"
-  (not (listp x)))
+ "Is it a atom?"
+ (not (listp x)))
 
 (defun lat? (l)
   "Is it a list of atoms?"
@@ -180,8 +180,8 @@
   (cond
     ((null lat) (quote ()))
     ((numberp (car lat))(cons
-                (car lat)
-                (all-nums2 (cdr lat))))
+                         (car lat)
+                         (all-nums2 (cdr lat))))
     (t (all-nums2 (cdr lat)))))
 
 (defun eqan? (a1 a2)

@@ -1,3 +1,4 @@
+
 (defgeneric withdraw (account amount)
   (:documentation "Withdraw account with amount,
                    Signal error if current balance is less than amount"))
@@ -15,3 +16,9 @@
       (incf (balance account) overdraft)))
   (call-next-method))
 
+;; Closure
+(let ((l-n 0))
+  (defun plus()
+    (incf l-n))
+  (defun minus()
+    (decf l-n)))
