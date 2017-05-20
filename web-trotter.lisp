@@ -1,5 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;; website-trotter.lisp
+; ;;;; website-trotter.lisp
 ;;;;
 ;;;; License: AGPL3
 ;;;; Author: Paul Nathan
@@ -82,3 +82,5 @@ eat memory."
              #'(lambda (url depth)
                  (format t "~a: ~a~%" depth url))
              2))
+
+(run-trotter)

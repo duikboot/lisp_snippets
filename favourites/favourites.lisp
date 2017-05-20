@@ -156,11 +156,11 @@
      (:h2 "Current stand")
      (:div :id "chart" ; Used for CSS styling of the links.
        (:ol
-    (dolist (game (games))
-     (htm
-      (:li (:a :href (format nil "vote?name=~a" (url-encode ; avoid injection attacks
-                                                     (name game))) "Vote!")
-           (fmt "~A with ~d votes" (escape-string (name game))
+        (dolist (game (games))
+         (htm
+          (:li (:a :href (format nil "vote?name=~a" (url-encode ; avoid injection attacks
+                                                         (name game))) "Vote!")
+               (fmt "~A with ~d votes" (escape-string (name game))
                                        (votes game)))))))))
 
 (define-easy-handler (new-game :uri "/new-game") ()
