@@ -22,3 +22,7 @@
     (incf l-n))
   (defun minus()
     (decf l-n)))
+
+(let ((x 0))
+  (defun adder (y)
+    (setq x (+ x y))))
