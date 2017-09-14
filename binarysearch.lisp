@@ -1,6 +1,6 @@
 (defun between-p (neelde haystack)
-  (and (< neelde (first (last haystack)))
-       (> neelde (first haystack))))
+ (and (<= neelde (first (last haystack)))
+      (>= neelde (first haystack))))
 
 (defun bin-search (neelde haystack)
   (let* ((index (ash (length haystack) -1))
