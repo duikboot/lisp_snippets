@@ -32,8 +32,8 @@
     ((= m 0) 1)
     ((evenp m)
      (let ((m/2 (/ m 2)))
-       (power (* n n) m/2)))
-    (t (* n (power n (- m 1))))))
+       (power-more-efficient (* n n) m/2)))
+    (t (* n (power-more-efficient n (- m 1))))))
 
 (defun count-atoms (l)
   (cond
@@ -41,3 +41,6 @@
      ((atom l) 1)
      (t (+ (count-atoms (car l))
            (count-atoms (cdr l))))))
+
+(defun dot-product (l1 l2)
+  (reduce #'+ (mapcar #'* l1 l2)))
